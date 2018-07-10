@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3D Chromatin Viewer</title>
+    
+    <script type="text/javascript" src="js/filesaver/Blob.js"></script>
+    <script type="text/javascript" src="js/filesaver/canvas-toBlob.js"></script>
+    <script type="text/javascript" src="js/filesaver/FileSaver.js"></script>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/threex/THREEx.KeyboardState.js"></script>
+    <script type="text/javascript" src="js/threex/THREEx.FullScreen.js"></script>
+    <script type="text/javascript" src="js/threex/THREEx.WindowResize.js"></script>
+    <script type="text/javascript" src="js/lib_three/Detector.js"></script>
+    <script type="text/javascript" src="js/lib_three/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/lib_three/Stats.js"></script>
+    <script type="text/javascript" src="js/lib_three/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/lib_three/ThreeCSG.js"></script>
+    <script type="text/javascript" src="js/lib_three/topology.js"></script>
+    <script type="text/javascript" src="js/lib_three/STLFileSaver.js"></script>
+    <script type="text/javascript" src="js/lib_three/binary_stl_writer.js"></script>
+    
+    <script type="text/javascript" src="js/BedData.js"></script>
+    <script type="text/javascript" src="js/ColorScale.js"></script>
+    <script type="text/javascript" src="js/ChromosomeData.js"></script>
+    <script type="text/javascript" src="js/ChromatinModel.js"></script>
+    <script type="text/javascript" src="js/Viewer.js"></script>
+    <script type="text/javascript" src="js/LockedControls.js"></script>
+    <script type="text/javascript" src="js/3DChromatinApplication.js"></script>
+
+    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.css">
+    <script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+    <style>
+        .chromatin-view {
+            width: 100%;
+            background-color: lightgreen;
+        }
+
+        .dg button, .dg input, .dg optgroup, .dg select, .dg textarea {
+            color: #000000;
+            line-height: normal;
+        }
+
+        .dg button, .dg input, .dg optgroup, .dg select, .dg textarea, .dg div {
+            box-sizing: content-box;
+        }
+
+        .chrom-view-container {
+            position: relative;
+        }
+
+        .progress {
+            margin-bottom: 0px;
+            border-radius: 0px;
+        }
+
+        .progress-bar {
+            -webkit-transition: none;
+            -moz-transition: none;
+            -ms-transition: none;
+            -o-transition: none;
+            transition: none;
+        }​
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            init3DChromatinApp(
+                    $('#chromatin-views-container'),
+                    $('#create-view-button-group'),
+                    $('#lock-views-button'));
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>3D Chromatin Viewer</h1>
+
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-md-12">
+
+                <!--div class="input-group"-->
+                    <div id="create-view-button-group" class="btn-group">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="experiment-dropdown-label">Select Experiment</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu experiment-dropdown-menu" role="menu">
+                                <!--
+                                <li><a href="#">Dropdown link</a></li>
+                                <li><a href="#">Dropdown link</a></li>
+                                -->
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-default create-view-btn">Create View</button>
+                    </div>
+                    <button id="lock-views-button" type="button" class="btn btn-default create-view-btn">Lock View Transformations</button>
+                <!--/div-->
+
+
+            </div>
+        </div>
+
+        <div id="chromatin-views-container"></div>
+    </div>
+</body>
+
+</html>
